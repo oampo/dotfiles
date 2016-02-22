@@ -34,6 +34,8 @@ fi
 
 systemctl start --user redshift
 xsetroot -cursor_name left_ptr
+xset s off
+xset s noblank
 numlockx &
 sxhkd &
 exec bspwm 2>&1 /home/joe/bspwm.log
