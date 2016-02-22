@@ -1,0 +1,27 @@
+#! /bin/sh
+
+PANEL_WM_NAME="bar"
+PANEL_HEIGHT=24
+
+if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+lemonade | lemonbar -b -f "Ubuntu" -f "FontAwesome" -B "#073642" -F "#839496" -g x$PANEL_HEIGHT | sh &
+
+bspc config bottom_padding $PANEL_HEIGHT
+
+wid=$(xdo id -a "$PANEL_WM_NAME")
+tries_left=20
+while [ -z "$wid" -a "$tries_left" -gt 0 ] ; do
+    sleep 0.05
+    wid=$(xdo id -a "$PANEL_WM_NAME")
+    tries_left=$((tries_left - 1))
+done
+[ -n "$wid" ] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait
+
