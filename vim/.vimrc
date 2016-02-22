@@ -113,11 +113,6 @@ let g:lightline.mode_map = {
     \ '?': ' '
 \ }
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 " SCVim
 let g:sclangTerm = "gnome-terminal -x $SHELL -ic"
 
