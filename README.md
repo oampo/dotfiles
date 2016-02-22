@@ -5,5 +5,8 @@
 ```sh
 git clone https://github.com/oampo/dotfiles
 cd dotfiles
-./install.sh
+# Setup stow
+stow --target=$HOME stow
+# Setup (e.g.) git
+stow git
 ```
