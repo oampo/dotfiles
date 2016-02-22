@@ -1,0 +1,13 @@
+[user]
+	email = joe@oampo.co.uk
+	name = Joe Turner
+
+[sendemail]
+	smtpencryption = tls
+	smtpserver = /usr/bin/msmtp
+	smtpuser = orphansandoligarchs@gmail.com
+	smtpserverport = 587
+[core]
+	excludesfile = /home/joe/.gitignore
+[alias]
+    pm = !git fetch origin && git checkout preview && git merge origin/preview && git checkout master && git merge origin/master && git merge preview && git push origin master
