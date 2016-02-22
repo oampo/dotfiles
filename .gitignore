@@ -1,3 +1,0 @@
-# Ignore vim .swp files
-.*.sw?
-*.pyc
