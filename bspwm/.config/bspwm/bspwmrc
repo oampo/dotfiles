@@ -9,7 +9,7 @@ bspc config gapless_monocle true
 bspc config borderless_monocle true
 bspc config normal_border_color "#839496"
 bspc config focused_border_color "#268BD2"
-bspc config presel_message_color "#268BD2"
+bspc config presel_feedback_color "#268BD2"
 
 bspc monitor -d 1 2 3 4 5 6
 
