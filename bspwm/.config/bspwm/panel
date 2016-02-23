@@ -10,7 +10,7 @@ fi
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
-lemonade | lemonbar -b -f "Ubuntu" -f "FontAwesome" -B "#073642" -F "#839496" -g x$PANEL_HEIGHT | sh &
+lemonade | lemonbar -b -f "Ubuntu" -f "FontAwesome" -B "#002B36" -F "#839496" -g x$PANEL_HEIGHT | sh &
 
 bspc config bottom_padding $PANEL_HEIGHT
 
