@@ -23,7 +23,7 @@ fi
 export EDITOR=vim
 
 # PATH
-export PATH=$PATH:/var/lib/gems/1.8/bin:/home/joe/apps/lilypond/bin:/home/joe/apps/flex/bin:/home/joe/apps/flashplayer:/home/joe/apps/sonic-annotator:/home/joe/apps/android-sdk-linux/tools:/home/joe/apps/android-sdk-linux/platform-tools:/home/joe/apps/gcc-arm-none-eabi-4_7-2013q3/bin/:/usr/local/lpcxpresso_4.2.3_255/lpcxpresso/bin:/home/joe/apps/google_appengine:/home/joe/apps/aminc:/home/joe/apps/processing-2.1.2/:/home/joe/code/go/bin:/usr/local/heroku/bin:/home/joe/apps/npm-global/bin:/home/joe/apps/composer:/home/joe/.local/bin
+export PATH=$PATH:/var/lib/gems/1.8/bin:/home/joe/apps/lilypond/bin:/home/joe/apps/flex/bin:/home/joe/apps/flashplayer:/home/joe/apps/sonic-annotator:/home/joe/apps/android-sdk-linux/tools:/home/joe/apps/android-sdk-linux/platform-tools:/home/joe/apps/gcc-arm-none-eabi-4_7-2013q3/bin/:/usr/local/lpcxpresso_4.2.3_255/lpcxpresso/bin:/home/joe/apps/google_appengine:/home/joe/apps/aminc:/home/joe/apps/processing-2.1.2/:/home/joe/code/go/bin:/usr/local/heroku/bin:/home/joe/.npm-global/bin:/home/joe/apps/composer:/home/joe/.local/bin
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
@@ -78,8 +78,13 @@ curlpatch() {
     curl -X PATCH -H "Content-Type: application/json" -d "$2" "$1" "${@:3}"
 }
 
+# Utils
 youtube-dl-playlist() {
     youtube-dl --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --autonumber-size 2 "$@"
+}
+
+rgrepvim() {
+    vim $(grep --color=none -rIl ${@:1})
 }
 
 source ~/apps/nvm/nvm.sh
