@@ -1,0 +1,12 @@
+#! /bin/bash
+
+wid=$1
+class=$2
+instance=$3
+
+title=$(xprop -id "$wid" | grep ^WM_NAME | cut -d = -f 2-)
+
+if grep --quiet "is sharing your screen" <<< $title; then
+    echo "state=floating";
+fi
+
