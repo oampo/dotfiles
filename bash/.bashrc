@@ -23,7 +23,7 @@ fi
 export EDITOR=vim
 
 # PATH
-export PATH=$PATH:/var/lib/gems/1.8/bin:/home/joe/apps/lilypond/bin:/home/joe/apps/flex/bin:/home/joe/apps/flashplayer:/home/joe/apps/sonic-annotator:/home/joe/apps/android-sdk-linux/tools:/home/joe/apps/android-sdk-linux/platform-tools:/home/joe/apps/gcc-arm-none-eabi-4_7-2013q3/bin/:/usr/local/lpcxpresso_4.2.3_255/lpcxpresso/bin:/home/joe/apps/google_appengine:/home/joe/apps/aminc:/home/joe/apps/processing-2.1.2/:/home/joe/code/go/bin:/usr/local/heroku/bin:/home/joe/.npm-global/bin:/home/joe/apps/composer:/home/joe/.local/bin
+export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/bin:/home/joe/apps/lilypond/bin:/home/joe/apps/flex/bin:/home/joe/apps/flashplayer:/home/joe/apps/sonic-annotator:/home/joe/apps/android-sdk-linux/tools:/home/joe/apps/android-sdk-linux/platform-tools:/home/joe/apps/gcc-arm-none-eabi-4_7-2013q3/bin/:/usr/local/lpcxpresso_4.2.3_255/lpcxpresso/bin:/home/joe/apps/google_appengine:/home/joe/apps/aminc:/home/joe/apps/processing-2.1.2/:/home/joe/code/go/bin:/usr/local/heroku/bin:/home/joe/.npm-global/bin:/home/joe/apps/composer:/home/joe/.local/bin
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
@@ -48,14 +48,6 @@ alias fifteen='termdown -b -s 15m'
 alias ten='termdown -b -s 10m'
 alias five='termdown -b -s 5m'
 alias hdprocessing='ffmpeg -r 60 -y -i screen-%*.tif -pass 1 -vcodec libx264 -preset slow -b:v 10000k -r 30 -pix_fmt yuv420p -f mp4 -an /dev/null && ffmpeg -r 60 -i screen-%*.tif -pass 2 -vcodec libx264 -preset slow -b:v 10000k -r 30 -pix_fmt yuv420p processing.mp4 && rm ffmpeg2pass*'
-
-# Make mocha output on solarized.
-mocha() {
-  mocha=$(type -P mocha)
-  substitution='s/\x1b\[90m/\x1b[92m/g'
-
-  $mocha -c "$@" > >(perl -pe "$substitution") 2> >(perl -pe "$substitution" 1>&2)
-}
 
 # Rest calls
 curlget() {
@@ -88,3 +80,6 @@ rgrepvim() {
 }
 
 source ~/apps/nvm/nvm.sh
+
+# added by travis gem
+[ -f /home/joe/.travis/travis.sh ] && source /home/joe/.travis/travis.sh
