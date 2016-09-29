@@ -48,6 +48,7 @@ alias fifteen='termdown -b -s 15m'
 alias ten='termdown -b -s 10m'
 alias five='termdown -b -s 5m'
 alias hdprocessing='ffmpeg -r 60 -y -i screen-%*.tif -pass 1 -vcodec libx264 -preset slow -b:v 10000k -r 30 -pix_fmt yuv420p -f mp4 -an /dev/null && ffmpeg -r 60 -i screen-%*.tif -pass 2 -vcodec libx264 -preset slow -b:v 10000k -r 30 -pix_fmt yuv420p processing.mp4 && rm ffmpeg2pass*'
+alias eli='sudo sshfs joe@192.168.0.20:/home/joe /mnt/eli -C -o allow_other,follow_symlinks'
 
 # Rest calls
 curlget() {
@@ -83,3 +84,6 @@ source ~/apps/nvm/nvm.sh
 
 # added by travis gem
 [ -f /home/joe/.travis/travis.sh ] && source /home/joe/.travis/travis.sh
+
+# Disable Ctrl-S in terminals
+stty -ixon
