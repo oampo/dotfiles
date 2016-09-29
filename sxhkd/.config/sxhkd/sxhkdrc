@@ -51,6 +51,9 @@ ctrl + alt + shift + {Left, Right}
 super + f
     firefox
 
+super + c
+    chromium
+
 super + t
     gnome-terminal --hide-menubar
 
