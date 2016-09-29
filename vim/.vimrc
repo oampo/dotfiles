@@ -67,6 +67,9 @@ set noshowmode
 set exrc
 set secure
 
+" Force write on save, so inotify is notified
+set backupcopy=yes
+
 " Tabs in makefiles
 autocmd FileType make setlocal noexpandtab
 
@@ -75,6 +78,12 @@ let g:vim_markdown_folding_disabled=1
 
 " Spellcheck markdown
 autocmd BufRead,BufNewFile *.md setlocal spell
+
+" Two space indentation in package.json
+autocmd BufRead,BufNewFile package.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" Mustache-markdown hybrid in master syllabus
+autocmd BufNewFile,BufRead ~/documents/curricula/full_time_career_path/master-syllabus/*.md set syntax=markdown.mustache
 
 " Shell
 set shell=/bin/bash
