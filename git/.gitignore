@@ -111,3 +111,6 @@ node_modules
 
 # Ignore redis binary dump (dump.rdb) files
 *.rdb
+
+# OSX stuff
+.DS_Store
