@@ -14,6 +14,7 @@ Bundle 'sophacles/vim-processing'
 Bundle 'armyofevilrobots/vim-openscad'
 Bundle 'wting/rust.vim'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'tpope/vim-abolish'
 
 
 call vundle#end()
@@ -58,7 +59,7 @@ set laststatus=2
 set incsearch
 set hlsearch
 set smartcase
-nnoremap <CR> :noh<CR><CR>
+nnoremap <silent> <CR> :noh<CR><CR>
 
 " Don't show the mode
 set noshowmode
