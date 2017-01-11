@@ -80,6 +80,13 @@ rgrepvim() {
     vim $(grep --color=none -rIl ${@:1})
 }
 
+diffsections() {
+  local fname=`basename $2`;
+  local tempfile=`mktemp -t $fname.XXX`;
+  head -$6 $2 | tail -n +$5 > $tempfile && head -$4 $1 | tail -n +$3 | diff -u $tempfile - ;
+  rm $tempfile;
+}
+
 source ~/apps/nvm/nvm.sh
 
 # added by travis gem
