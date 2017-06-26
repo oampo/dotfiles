@@ -3,8 +3,7 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
-
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'groenewege/vim-less'
 Bundle 'plasticboy/vim-markdown.git'
@@ -15,6 +14,8 @@ Bundle 'armyofevilrobots/vim-openscad'
 Bundle 'wting/rust.vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'tpope/vim-abolish'
+Bundle 'pangloss/vim-javascript'
+Bundle 'MaxMEllon/vim-jsx-pretty'
 
 
 call vundle#end()
@@ -37,6 +38,10 @@ set background=dark
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 16
 colorscheme solarized
+
+" Make prototype and this a bit less noisy with vim-javascript
+hi! link jsPrototype Identifier
+hi! link jsThis Identifier
 
 " Clipboard
 set clipboard=unnamedplus
