@@ -1,0 +1,89 @@
+global !p
+from inflection import *
+endglobal
+
+snippet i "ES6 import" b
+import $1 from '$2';
+endsnippet
+
+snippet ir "Import React" b
+import React from 'react';
+endsnippet
+
+snippet ic "Import connect" b
+import {connect} from 'react-redux';
+endsnippet
+
+snippet e "Export" b
+export 
+endsnippet
+
+snippet ed "Export default" b
+export default 
+endsnippet
+
+snippet req "Require" b
+const $1 = require('$2');
+endsnippet
+
+snippet me "module.exports" b
+module.exports = 
+endsnippet
+
+snippet rc "React Component" b
+export default function $1(props) {
+	return (
+		$0
+	);
+}
+endsnippet
+
+snippet rcc "Stateful React Component" b
+export default class $1 extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			$0
+		);
+	}
+}
+endsnippet
+
+snippet msp "mapStateToProps" b
+export const mapStateToProps = (state, props) => ({
+});
+endsnippet
+
+snippet con "connect" b
+export default connect(${1:mapStateToProps})($2);
+endsnippet
+
+snippet red "reducer" b
+const initialState = {
+	$1
+};
+
+export default (state=initialState, action) => {
+	$2
+	return state;
+}
+endsnippet
+
+snippet redc "Reducer condition" b
+if (action.type === $1) {
+	$2
+}
+endsnippet
+
+snippet ac "Action creator" b
+export const `!p snip.rv = underscore(t[1]).upper()` = '`!p snip.rv = underscore(t[1]).upper()`';
+export const $1 = ($2) => ({
+	type: `!p snip.rv = underscore(t[1]).upper()`,
+	`!p snip.shift(1); snip.rv = (',\n' + snip.mkline()).join(map(lambda x: x.split("=")[0].strip(), t[2].split(",")))`
+});
+endsnippet
+
+

@@ -16,6 +16,8 @@ Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'tpope/vim-abolish'
 Bundle 'pangloss/vim-javascript'
 Bundle 'MaxMEllon/vim-jsx-pretty'
+Bundle 'SirVer/ultisnips'
+Bundle 'sbdchd/neoformat'
 
 
 call vundle#end()
@@ -88,8 +90,14 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 " Two space indentation in package.json
 autocmd BufRead,BufNewFile package.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+" Two space indentation in yaml
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 " Mustache-markdown hybrid in master syllabus
 autocmd BufNewFile,BufRead ~/documents/curricula/full_time_career_path/master-syllabus/*.md set syntax=markdown.mustache
+
+" Automatic prettier
+autocmd BufWritePre *.js Neoformat prettier
 
 " Shell
 set shell=/bin/bash
@@ -131,3 +139,10 @@ let g:lightline.mode_map = {
 " SCVim
 let g:sclangTerm = "gnome-terminal -x $SHELL -ic"
 
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:UltiSnipsEnableSnipMate=0
+let g:UltiSnipsSnippetsDir="~/.vim/custom-snippets"
+let g:UltiSnipsSnippetDirectories=["custom-snippets"]
