@@ -6,7 +6,7 @@ if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
 fi
 
 # Run keychain
-eval $(keychain --eval --quiet id_rsa --nogui)
+[[ -x "$(command -v keychain)" ]] && eval $(keychain --eval --quiet id_rsa --nogui)
 
 # Fix tmux pwd
 [ "x${PWD#/mnt/uhome/}" != "x$PWD" ] && cd /home/${PWD#/mnt/uhome/}
@@ -27,7 +27,8 @@ export PAGER='less -S'
 export ANDROID_HOME=/home/joe/apps/adk
 
 # PATH
-export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/bin:/home/joe/apps/lilypond/bin:/home/joe/apps/flex/bin:/home/joe/apps/flashplayer:/home/joe/apps/sonic-annotator:/home/joe/apps/adk/tools:/home/joe/apps/adk/platform-tools:/home/joe/apps/gcc-arm-none-eabi-4_7-2013q3/bin/:/usr/local/lpcxpresso_4.2.3_255/lpcxpresso/bin:/home/joe/apps/google_appengine:/home/joe/apps/aminc:/home/joe/apps/processing-3.3/:/home/joe/code/go/bin:/usr/local/heroku/bin:/home/joe/.npm-global/bin:/home/joe/apps/composer:/home/joe/.local/bin:/home/joe/apps/genymotion:/home/joe/.cargo/bin
+[[ -x "$(command -v ruby)" ]] && export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/bin
+export PATH=$PATH:/home/joe/apps/lilypond/bin:/home/joe/apps/flex/bin:/home/joe/apps/flashplayer:/home/joe/apps/sonic-annotator:/home/joe/apps/adk/tools:/home/joe/apps/adk/platform-tools:/home/joe/apps/gcc-arm-none-eabi-4_7-2013q3/bin/:/usr/local/lpcxpresso_4.2.3_255/lpcxpresso/bin:/home/joe/apps/google_appengine:/home/joe/apps/aminc:/home/joe/apps/processing-3.3/:/home/joe/code/go/bin:/usr/local/heroku/bin:/home/joe/.npm-global/bin:/home/joe/apps/composer:/home/joe/.local/bin:/home/joe/apps/genymotion:/home/joe/.cargo/bin
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
@@ -95,7 +96,7 @@ diffsections() {
   rm $tempfile;
 }
 
-source ~/apps/nvm/nvm.sh
+[[ -f ~/apps/nvm/nvm.sh ]] && source ~/apps/nvm/nvm.sh
 
 # added by travis gem
 [ -f /home/joe/.travis/travis.sh ] && source /home/joe/.travis/travis.sh
