@@ -18,6 +18,10 @@ snippet e "Export" b
 export 
 endsnippet
 
+snippet ec "Export const" b
+export const 
+endsnippet
+
 snippet ed "Export default" b
 export default 
 endsnippet
@@ -40,10 +44,6 @@ endsnippet
 
 snippet rcc "Stateful React Component" b
 export default class $1 extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			$0
@@ -86,4 +86,6 @@ export const $1 = ($2) => ({
 });
 endsnippet
 
-
+snippet cl "Console log"
+console.log($1);
+endsnippet
