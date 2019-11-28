@@ -5,7 +5,16 @@
 super + q
     bspc node -c
 
+ctrl + alt + super + q
+    bspc node -c
+
 super + {Left, Right, Up, Down}
+    dir={west,east,north,south}; \
+    cur=$(bspc query -T -n focused | jshon -e presel -e splitDir -u 2>&-); \
+    [ "$dir" = "$cur" ] && dir=cancel; \
+    bspc node -p "$dir"
+
+ctrl + alt + super + {j, l, i, k}
     dir={west,east,north,south}; \
     cur=$(bspc query -T -n focused | jshon -e presel -e splitDir -u 2>&-); \
     [ "$dir" = "$cur" ] && dir=cancel; \
@@ -14,10 +23,25 @@ super + {Left, Right, Up, Down}
 alt + {Left, Right, Up, Down}
     bspc node -s {west, east, north, south}
 
+ctrl + alt + super + shift + {j, l, i, k}
+    bspc node -s {west, east, north, south}
+
 alt + Tab
     bspc node -f next
 
+ctrl + alt + super + Tab
+    bspc node -f next
+
 ctrl + alt + Left
+    monitor=$(bspc query -M -m); \
+    desktops=$(bspc query -D -m $monitor); \
+    firstDesktop=$(cut -d ' ' -f1 <<< $desktops); \
+    desktop=$(bspc query -D -d focused); \
+    [ "$desktop" != "$firstDesktop" ] && bspc desktop -f prev && \
+    [ -p /tmp/lemonade-desktops-fifo ] && \
+    echo "" > /tmp/lemonade-desktops-fifo;
+
+ctrl + alt + super + s
     monitor=$(bspc query -M -m); \
     desktops=$(bspc query -D -m $monitor); \
     firstDesktop=$(cut -d ' ' -f1 <<< $desktops); \
@@ -36,10 +60,25 @@ ctrl + alt + Right
     [ -p /tmp/lemonade-desktops-fifo ] && \
     echo "" > /tmp/lemonade-desktops-fifo;
 
-ctrl + alt + shift + {Left, Right}
-    bspc node -d {prev, next} -f; \
+ctrl + alt + super + f
+    monitor=$(bspc query -M -m); \
+    desktops=$(bspc query -D -m $monitor); \
+    numDesktops=$(wc -l <<< "$desktops"); \
+    lastDesktop=$(cut -d ' ' -f$numDesktops <<< $desktops); \
+    desktop=$(bspc query -D -d focused); \
+    [ "$desktop" != "$lastDesktop" ] && bspc desktop -f next && \
+    [ -p /tmp/lemonade-desktops-fifo ] && \
     echo "" > /tmp/lemonade-desktops-fifo;
 
+ctrl + alt + shift + {Left, Right}
+    bspc node -d {prev, next} -f; \
+    [ -p /tmp/lemonade-desktops-fifo ] && \
+    echo "" > /tmp/lemonade-desktops-fifo;
+
+ctrl + alt + super + shift + {s, f}
+    bspc node -d {prev, next} -f; \
+    [ -p /tmp/lemonade-desktops-fifo ] && \
+    echo "" > /tmp/lemonade-desktops-fifo;
 
 ~button1
     bspc pointer -g focus
@@ -51,14 +90,32 @@ ctrl + alt + shift + {Left, Right}
 super + f
     firefox
 
+ctrl + alt + super + g
+    firefox
+
 super + c
+    chromium
+
+ctrl + alt + super + b
     chromium
 
 super + t
     gnome-terminal --hide-menubar
 
+ctrl + alt + super + t
+    gnome-terminal --hide-menubar
+
 super + r
+    gmrun
+
+ctrl + alt + super + 5
     gmrun
 
 super + b
     pseudo-tile
+
+F13
+    xdotool mousedown 2
+
+any + @F13
+    xdotool mouseup 2
