@@ -14,13 +14,15 @@ eval $(keychain --eval --quiet id_rsa --nogui)
 # Custom prompt
 export TRUNCATED_PATH='$(pwd | sed "s,$HOME,~," | awk -F "/" '"'"'{if (length($0) > 14) { if (NF>4) print $1 "/" $2 "/.../" $(NF-1) "/" $NF; else if (NF>3) print $1 "/" $2 "/.../" $NF; else print $1 "/.../" $NF; } else print $0;}'"'"')'
 if tty | grep pts > /dev/null; then
-	PS1='\[\e[30;104m\] $(eval "echo ${TRUNCATED_PATH}") \[\e[94;49m\]\[\e[0m\] '
+	PS1='\[\e[30;104m\] \h | $(eval "echo ${TRUNCATED_PATH}") \[\e[94;49m\]\[\e[0m\] '
 else
 	PS1='$(eval "echo ${TRUNCATED_PATH}")> '
 fi
 
 # Editor
 export EDITOR=vim
+# Pager
+export PAGER='less -S'
 
 export ANDROID_HOME=/home/joe/apps/adk
 
@@ -51,6 +53,10 @@ alias ten='termdown -b -s 10m'
 alias five='termdown -b -s 5m'
 alias hdprocessing='ffmpeg -r 60 -y -i screen-%*.tif -pass 1 -vcodec libx264 -preset slow -b:v 10000k -r 30 -pix_fmt yuv420p -f mp4 -an /dev/null && ffmpeg -r 60 -i screen-%*.tif -pass 2 -vcodec libx264 -preset slow -b:v 10000k -r 30 -pix_fmt yuv420p processing.mp4 && rm ffmpeg2pass*'
 alias eli='sudo sshfs joe@192.168.0.20:/home/joe /mnt/eli -C -o allow_other,follow_symlinks'
+alias swedish='setxkbmap se'
+alias english='setxkbmap gb'
+# Thinkful aliases
+source ~/.bashrc.thinkful > /dev/null 2>&1
 
 # Rest calls
 curlget() {
@@ -96,3 +102,11 @@ source ~/apps/nvm/nvm.sh
 
 # Disable Ctrl-S in terminals
 stty -ixon
+
+# added by pipsi (https://github.com/mitsuhiko/pipsi)
+export PATH="$PATH:/home/joe/.local/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
